@@ -1,15 +1,44 @@
-//TIP To <b>Run</b> code, press <shortcut actionId="Run"/> or
-// click the <icon src="AllIcons.Actions.Execute"/> icon in the gutter.
-public class Main {
-    public static void main(String[] args) {
-        //TIP Press <shortcut actionId="ShowIntentionActions"/> with your caret at the highlighted text
-        // to see how IntelliJ IDEA suggests fixing it.
-        System.out.printf("Hello and welcome!");
+abstract class Graphic {
+    protected int x1, y1;
+    protected int x2, y2;
 
-        for (int i = 1; i <= 5; i++) {
-            //TIP Press <shortcut actionId="Debug"/> to start debugging your code. We have set one <icon src="AllIcons.Debugger.Db_set_breakpoint"/> breakpoint
-            // for you, but you can always add more by pressing <shortcut actionId="ToggleLineBreakpoint"/>.
-            System.out.println("i = " + i);
-        }
+    public void setStart(int x,int y){
+        x1=x;
+        y1=y;
+
+    }
+
+ public void setEnd(int x,int y){
+        x2=x;
+        y2=y;
+
+ }
+
+    public void draw() {
     }
 }
+class Line extends Graphic{
+    public void draw(){
+        System.out.printf("draw line from(%d,%d)to(%d,%d)%n",x1,y1,x2,y2);
+
+    }
+}
+class Rectangle extends Graphic{
+    public void draw(){
+        System.out.printf("draw rectangle from(%d,%d)to(%d,%d)%n",x1,y1,x2,y2);
+    }
+}
+ public class Main {
+    static void drawUtil(int x1, int x2, int y1, int y2, Graphic g) {
+        g.setStart(x1,y1);
+        g.setEnd( x2,y2);
+        g.draw();
+    }
+
+    public static void main(String[] args) {
+        //drawUtil(10,10,20,20,new Graphic());
+        drawUtil(30,30,40,40,new Line());
+        drawUtil(50,50,60,60,new Rectangle());
+    }
+}
+
